@@ -7,8 +7,9 @@
   "context": "node",
   "scripts": {
     "watch": "parcel watch",
-    "build": "parcel build",
-    "build:parser": "antlr -Dlanguage=JavaScript lib/SqlBase.g4"
+    "build": "npm run build:parser && npm run build:dist",
+    "build:dist": "parcel build",
+    "build:parser": "antlr -Dlanguage=JavaScript lib/TrinoLexer.g4 lib/TrinoParser.g4"
   },
   "keywords": [
     "trino",

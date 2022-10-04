@@ -1,5 +1,6 @@
 /node_modules
 /lib/*
-!/lib/SqlBase.g4
+!/lib/TrinoParser.g4
+!/lib/TrinoLexer.g4
 /dist
 /.parcel-cache
