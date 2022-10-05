@@ -13,14 +13,14 @@ npm install trino-sql-parser
 ## Usage
 
 ```javascript
-import { parse } from 'trino-sql-parser'
+import { parse } from "trino-sql-parser";
 
-const sql = '...'
+const sql = "...";
 
 try {
-  parse(sql)
+  parse(sql);
 } catch (e) {
-  console.error('parse error occurred')
+  console.error("parse error occurred");
 }
 ```
 
@@ -47,10 +47,10 @@ Then run tests
 $ npm run test
 ```
 
-
 ## About the grammar
 
 The grammar and examples are taken from https://github.com/antlr/grammars-v4/tree/master/sql/trino
 
 ## License
+
 [MIT](https://choosealicense.com/licenses/mit/)
