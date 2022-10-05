@@ -1,6 +1,6 @@
 {
   "name": "trino-sql-parser",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Sql parser for trino built with antlr4",
   "source": "src/index.js",
   "main": "dist/main.mjs",
