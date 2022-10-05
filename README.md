@@ -35,16 +35,22 @@ Please make sure to update tests as appropriate.
 
 You must have antlr4 installed on your machine.
 
+Install dependencies
+
+```
+$ yarn
+```
+
 Build the package
 
 ```
-$ npm run build
+$ yarn build
 ```
 
 Then run tests
 
 ```
-$ npm run test
+$ yarn test
 ```
 
 ## About the grammar
