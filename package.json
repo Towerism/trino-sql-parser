@@ -5,6 +5,7 @@
   "source": "src/index.js",
   "main": "dist/main.mjs",
   "context": "node",
+  "repository": "github:towerism/trino-sql-parser",
   "scripts": {
     "watch": "parcel watch",
     "build": "npm run build:parser && npm run build:dist",
