@@ -9,7 +9,8 @@
     "watch": "parcel watch",
     "build": "npm run build:parser && npm run build:dist",
     "build:dist": "parcel build",
-    "build:parser": "antlr -Dlanguage=JavaScript lib/TrinoLexer.g4 lib/TrinoParser.g4"
+    "build:parser": "antlr -Dlanguage=JavaScript lib/TrinoLexer.g4 lib/TrinoParser.g4",
+    "test": "ava"
   },
   "keywords": [
     "trino",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@types/antlr4": "^4.7.3",
+    "ava": "^4.3.3",
     "parcel": "^2.7.0",
     "typescript": "^4.8.4"
   },
