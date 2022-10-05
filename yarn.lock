@@ -1042,6 +1042,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/antlr4@npm:^4.7.3":
+  version: 4.7.3
+  resolution: "@types/antlr4@npm:4.7.3"
+  checksum: 9ec5b6616d85db81147e49cdbdf9fff7027ad999aba96bdbd1d76f9807d730ea482d4fc4be522cb01bf6bc59420bbf52cf4e7ebbc6693e1e5556ef4bb2a9fc22
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:^7.0.9":
   version: 7.0.11
   resolution: "@types/json-schema@npm:7.0.11"
@@ -4638,6 +4645,7 @@ __metadata:
     "@parcel/packager-ts": 2.7.0
     "@parcel/transformer-typescript-types": 2.7.0
     "@swc/helpers": ^0.4.11
+    "@types/antlr4": ^4.7.3
     "@typescript-eslint/eslint-plugin": latest
     "@typescript-eslint/parser": latest
     antlr4: ^4.11.0

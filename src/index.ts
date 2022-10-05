@@ -1,26 +1,34 @@
-import SqlBaseParser from "../lib/TrinoParser";
-import SqlBaseLexer from "../lib/TrinoLexer";
+import TrinoParser from "../lib/TrinoParser";
+import TrinoLexer from "../lib/TrinoLexer";
 import antlr4 from "antlr4";
+import type { ErrorListener } from "antlr4/error/ErrorListener";
+import type { ParserRuleContext } from "antlr4";
 
-// eslint-disable-next-line
-const BaseErrorListener = (antlr4 as any).error.ErrorListener;
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+const AntlrErrorListener: typeof ErrorListener = (antlr4 as any).error
+  .ErrorListener;
 
-class ErrorListener extends BaseErrorListener {
+class TrinoErrorListener extends AntlrErrorListener {
   syntaxError(_recognizer, offendingSymbol, line, column, msg) {
     throw new Error(`${offendingSymbol} line ${line}, col ${column}: ${msg}`);
   }
 }
 
-export function parse(input: string): antlr4.ParserRuleContext {
+interface Parser {
+  buildParseTrees: boolean;
+  removeErrorListeners(): void;
+  addErrorListener(listener: ErrorListener): void;
+  parse(): ParserRuleContext;
+}
+
+export function parse(input: string) {
   const chars = new antlr4.InputStream(input);
-  const lexer = new SqlBaseLexer(chars);
+  const lexer = new TrinoLexer(chars);
   const tokens = new antlr4.CommonTokenStream(lexer);
-  const parser = new SqlBaseParser(tokens);
+  const parser = new TrinoParser(tokens) as Parser;
   parser.buildParseTrees = true;
   parser.removeErrorListeners();
-  // eslint-disable-next-line
-  /* @ts-ignore */
-  parser.addErrorListener(new ErrorListener());
+  parser.addErrorListener(new TrinoErrorListener());
   const tree = parser.parse();
   return tree;
 }
