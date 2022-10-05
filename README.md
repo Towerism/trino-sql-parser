@@ -47,5 +47,10 @@ Then run tests
 $ npm run test
 ```
 
+
+## About the grammar
+
+The grammar and examples are taken from https://github.com/antlr/grammars-v4/tree/master/sql/trino
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
