@@ -17,13 +17,25 @@ function getExamples() {
   });
 }
 
-getExamples().forEach(([sqlFileName, sql]) => {
+const examples = getExamples()
+const examplesMap = Object.fromEntries(examples)
+
+examples.forEach(([sqlFileName, sql]) => {
   test(sqlFileName, (t) => {
-    if (sqlFileName === "parse_error.sql") {
+    if (sqlFileName.endsWith("_error.sql")) {
       t.throws(() => parse(sql));
       return;
     }
     parse(sql);
     t.pass();
   });
+});
+
+test("option: allowMultiStatement false - successful parse", (t) => {
+  parse(examplesMap["single_statement.sql"], { allowMultiStatement: false });
+  t.pass();
+});
+
+test("option: allowMultiStatement false - failed parse", (t) => {
+  t.throws(() => parse(examplesMap["multi_statement.sql"], { allowMultiStatement: false }));
 });

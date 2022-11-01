@@ -21,14 +21,36 @@ interface Parser {
   parse(): ParserRuleContext;
 }
 
-export function parse(input: string) {
+interface Options {
+  allowMultiStatement: boolean;
+}
+
+export function parse(
+  input: string,
+  options: Options = { allowMultiStatement: true }
+) {
   const chars = new antlr4.InputStream(input);
   const lexer = new TrinoLexer(chars);
-  const tokens = new antlr4.CommonTokenStream(lexer);
-  const parser = new TrinoParser(tokens) as Parser;
+  const tokenStream = new antlr4.CommonTokenStream(lexer);
+
+  tokenStream.fill();
+
+  if (!options.allowMultiStatement) {
+    const numSemicolons = tokenStream.tokens.filter(
+      (t) => t.type === TrinoLexer.SEMICOLON_
+    ).length;
+    if (numSemicolons > 1) {
+      throw new Error(
+        "Query with multiple statements is not supported at this time."
+      );
+    }
+  }
+
+  const parser = new TrinoParser(tokenStream) as Parser;
   parser.buildParseTrees = true;
   parser.removeErrorListeners();
   parser.addErrorListener(new TrinoErrorListener());
   const tree = parser.parse();
+
   return tree;
 }
